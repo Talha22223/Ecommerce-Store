@@ -49,4 +49,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
   CMD sh -c "node -e \"const p=process.env.PORT||4000; require('http').get('http://localhost:'+p+'/health', r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1));\""
 
 # Start the application
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/src/server.js"]
