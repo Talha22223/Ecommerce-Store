@@ -4,8 +4,8 @@ import jwt, { Secret, SignOptions } from 'jsonwebtoken'
 const prisma = new PrismaClient()
 
 const JWT_SECRET: Secret = process.env.JWT_SECRET || 'secret'
-const ACCESS_EXPIRES: SignOptions['expiresIn'] = process.env.JWT_ACCESS_EXP || '15m'
-const REFRESH_EXPIRES: SignOptions['expiresIn'] = process.env.JWT_REFRESH_EXP || '7d'
+const ACCESS_EXPIRES = (process.env.JWT_ACCESS_EXP ?? '15m') as SignOptions['expiresIn']
+const REFRESH_EXPIRES = (process.env.JWT_REFRESH_EXP ?? '7d') as SignOptions['expiresIn']
 
 export async function register(data: { email: string; password: string; name?: string }) {
   const hashed = await bcrypt.hash(data.password, 10)
